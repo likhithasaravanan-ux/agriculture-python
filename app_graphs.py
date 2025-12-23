@@ -3,18 +3,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-st.markdown(
-    """
-    <style>
-    .stApp {
-        background: linear-gradient(to bottom, #e0f7e9, #b2f2bb);
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-st.title("🌾 Smart Farming Advisory System (Enhanced)")
+st.title("🌾 Smart Farming Advisory System ")
 crop = {
     'wheat': {
         'fertilizer': 'Urea with nitrogen source and DAP',
