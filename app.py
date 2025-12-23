@@ -1,155 +1,83 @@
-import pandas as pd
+import streamlit as st
 
-crop = {'wheat': {
-        'fertilizer':'Urea with nitrigon source and DAP',
-        'pesticides':'Imidacloprid controls aphids and chiorpyrifos for control soil insects',
-        'climate':'rain fall low and moderate'},
+st.title("🌾 Smart Farming Advisory System")
+
+crop = {
+    'wheat': {
+        'fertilizer': 'Urea with nitrogen source and DAP',
+        'pesticides': 'Imidacloprid controls aphids and chlorpyrifos for soil insects',
+        'climate': 'Low to moderate rainfall'
+    },
     'rice': {
-        'fertilizer':'Urea for fromote leaf grouth ',
-        'pesticides':'Buprofezin',
-        'climate':'high'},
+        'fertilizer': 'Urea for promoting leaf growth',
+        'pesticides': 'Buprofezin',
+        'climate': 'High rainfall'
+    },
     'cotton': {
-        'fertilizer':'Nitrogen and Phosphorus',
-        'pesticides':'thiamethoxam controle white fly',
-        'climate':'rain fall in moderate,warm and sunny in climate'},
-    'maize':{
-        'fertilizer':'DAP for 20-25 days',
-        'pesticides':'spinosad controls leaf pests',
-        'climate':'rain fall in moderate and warm climate'},
-    'sugarcane':{
-        'fertilizer':'(MOP) muriate of potash',
-        'pesticides':'fipronil controles soil pests',
-        'climate':'hot and numid in climate and moderate rain fall'},
-    'groundnut':{
-        'fertilizer':'DAP and Gypsum',
-        'pesticides':'Chlorpyrifos control leaf eating caterpillars',
-        'climate':'rain fall in low and moderate , climate is in warm and dry'},
-    'paddy':{
-        'fertilizer':'Urea and DAP',
-        'pesticides':'Buprofezin control plant hopper',
-        'climate':'standing water needed, climate in humid'},
-    'sunflower':{
-        'fertilizer':'Nitrogen(rich) and single super phospate',
-        'pesticides':'Quinalphos'},
-        'climate':'low rain fall and sunny and dry climate'
-       }
+        'fertilizer': 'Nitrogen and Phosphorus',
+        'pesticides': 'Thiamethoxam controls white fly',
+        'climate': 'Moderate rainfall, warm and sunny'
+    },
+    'maize': {
+        'fertilizer': 'DAP for 20–25 days',
+        'pesticides': 'Spinosad controls leaf pests',
+        'climate': 'Moderate rainfall and warm climate'
+    },
+    'sugarcane': {
+        'fertilizer': 'MOP (Muriate of Potash)',
+        'pesticides': 'Fipronil controls soil pests',
+        'climate': 'Hot and humid with moderate rainfall'
+    },
+    'groundnut': {
+        'fertilizer': 'DAP and Gypsum',
+        'pesticides': 'Chlorpyrifos controls caterpillars',
+        'climate': 'Low to moderate rainfall, warm and dry'
+    },
+    'paddy': {
+        'fertilizer': 'Urea and DAP',
+        'pesticides': 'Buprofezin controls plant hopper',
+        'climate': 'Humid climate with standing water'
+    },
+    'sunflower': {
+        'fertilizer': 'Nitrogen rich and single super phosphate',
+        'pesticides': 'Quinalphos',
+        'climate': 'Low rainfall, sunny and dry'
+    }
+}
 
-print('1.Black soil')
-print('2.Red soil')
-print('3.Alluvial soil')
-print('4.Clay soil')
-print('------select the type of soil in your land------')
-f_soil=int(input('--enter an soil option--'))
-if (f_soil==1):
-    print('you have black soil in your land')
-    print('----------------------------------')
-    print('Best crops for Black soil are:')
-    print('1.cotton')
-    print('2.sugarcane')
-    f_crop=int(input('enter option for given crop'))
-    if(f_crop==1):
-        print('\nyou are selected cotton for croping in black soil')
-        a=crop["cotton"]["fertilizer"]
-        b=crop['cotton']['pesticides']
-        c=crop['cotton']['climate']
-        print("fertilizer are : ",a)
-        print("pesticides are : ",b)
-        print("climate for that crop : ",c)
-    elif (f_crop==2):
-        print('\nyou are selected oil seeds for croping in black soil')
-        a=crop['sugarcane']['fertilizer']
-        b=crop['sugarcane']['pesticides']
-        c=crop['sugarcane']['climate']
-        print("fertilizer are : ",a)
-        print("pesticides are : ",b)
-        print("climate for that crop : ",c)
-    else:
-        print('invalid input')
-elif (f_soil==2):
-    print('you have red soil in your land')
-    print('----------------------------------')
-    print('Best crops for red soil are:')
-    print('1.wheat')
-    print('2.rice')
-    f_crop=int(input('enter option for given crop'))
-    if(f_crop==1):
-        print('\nyou are selected wheat for croping in red soil')
-        a=crop['wheat']['fertilizer']
-        b=crop['wheat']['pesticides']
-        c=crop['wheat']['climate']
-        print("fertilizer are : ",a)
-        print("pesticides are : ",b)
-        print("climate for that crop : ",c)
-    elif (f_crop==2):
-        print('you are selected rice for croping in red soil')
-        a=crop['rice']['fertilizer']
-        b=crop['rice']['pesticides']
-        c=crop['rice']['climate']
-        print("fertilizer are : ",a)
-        print("pesticides are : ",b)
-        print("climate for that crop : ",c)
-    else:
-        print('invalid input')
-elif (f_soil==3):
-    print('\nyou have red soil in your land')
-    print('----------------------------------')
-    print('Best crops for red soil are:')
-    print('1.maize')
-    print('2.ground nut')
-    f_crop=int(input('enter option for given crop'))
-    if(f_crop==1):
-        print('\nyou are selected wheat for croping in red soil')
-        a=crop['maize']['fertilizer']
-        b=crop['maize']['pesticides']
-        c=crop['maize']['climate']
-        print("fertilizer are : ",a)
-        print("pesticides are : ",b)
-        print("climate for that crop : ",c)
-    elif (f_crop==2):
-        print('\nyou are selected rice for croping in red soil')
-        a=crop['groundnut']['fertilizer']
-        b=crop['groundnut']['pesticides']
-        c=crop['groundnut']['climate']
-        print("fertilizer are : ",a)
-        print("pesticides are : ",b)
-        print("climate for that crop : ",c)
-    else:
-        print('invalid input')
-elif (f_soil==4):
-    print('you have red soil in your land')
-    print('----------------------------------')
-    print('Best crops for red soil are:')
-    print('1.sunflower')
-    print('2.paddy')
-    f_crop=int(input('enter option for given crop'))
-    if(f_crop==1):
-        print('\nyou are selected wheat for croping in red soil')
-        a=crop['sunflower']['fertilizer']
-        b=crop['sunflower']['pesticides']
-        c=crop['sunflower']['climate']
-        print("fertilizer are : ",a)
-        print("pesticides are : ",b)
-        print("climate for that crop : ",c)
-    elif (f_crop==2):
-        print('\nyou are selected rice for croping in red soil')
-        a=crop['paddy']['fertilizer']
-        b=crop['paddy']['pesticides']
-        c=crop['paddy']['climate']
-        print("fertilizer are : ",a)
-        print("pesticides are : ",b)
-        print("climate for that crop : ",c)
-    else:
-        print('invalid input')
-else:
-    print('invalid input')
-# Simple static weather report
-print("\n. Weather Forecast (Next 7 Days):")
-print("Day 1-2: Sunny ")
-print("Day 3-4: Partly Cloudy ")
-print("Day 5: Light Rain ")
-print("Day 6-7: Sunny ")
+st.header("🌱 Select Soil Type")
 
-print("\n. Farming Advice:")
-print("• Water crops in early morning")
-print("• Avoid spraying pesticides during rain")
-print("• Use organic manure once a month")
+soil = st.selectbox(
+    "Choose your soil type:",
+    ["Black soil", "Red soil", "Alluvial soil", "Clay soil"]
+)
+
+crop_options = {
+    "Black soil": ["cotton", "sugarcane"],
+    "Red soil": ["wheat", "rice"],
+    "Alluvial soil": ["maize", "groundnut"],
+    "Clay soil": ["sunflower", "paddy"]
+}
+
+selected_crop = st.selectbox(
+    "Choose the crop:",
+    crop_options[soil]
+)
+
+if st.button("Get Farming Advice"):
+    st.subheader("🌾 Crop Recommendations")
+    st.write("**Fertilizer:**", crop[selected_crop]["fertilizer"])
+    st.write("**Pesticides:**", crop[selected_crop]["pesticides"])
+    st.write("**Climate:**", crop[selected_crop]["climate"])
+
+    st.subheader("🌦 Weather Forecast (Next 7 Days)")
+    st.write("Day 1–2: Sunny")
+    st.write("Day 3–4: Partly Cloudy")
+    st.write("Day 5: Light Rain")
+    st.write("Day 6–7: Sunny")
+
+    st.subheader("📌 General Farming Advice")
+    st.write("• Water crops in early morning")
+    st.write("• Avoid spraying pesticides during rain")
+    st.write("• Use organic manure once a month")
+
