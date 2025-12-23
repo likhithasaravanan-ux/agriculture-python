@@ -1,7 +1,7 @@
 import streamlit as st
+import pandas as pd
 
 st.title("🌾 Smart Farming Advisory System")
-
 crop = {
     'wheat': {
         'fertilizer': 'Urea with nitrogen source and DAP',
@@ -44,31 +44,85 @@ crop = {
         'climate': 'Low rainfall, sunny and dry'
     }
 }
-
-st.header("🌱 Select Soil Type")
-
-soil = st.selectbox(
-    "Choose your soil type:",
-    ["Black soil", "Red soil", "Alluvial soil", "Clay soil"]
-)
-
-crop_options = {
-    "Black soil": ["cotton", "sugarcane"],
-    "Red soil": ["wheat", "rice"],
-    "Alluvial soil": ["maize", "groundnut"],
-    "Clay soil": ["sunflower", "paddy"]
+yield_data = {
+    'wheat': {
+        'Black soil': 28,
+        'Red soil': 22,
+        'Alluvial soil': 35,
+        'Clay soil': 25
+    },
+    'rice': {
+        'Black soil': 30,
+        'Red soil': 26,
+        'Alluvial soil': 38,
+        'Clay soil': 34
+    },
+    'cotton': {
+        'Black soil': 32,
+        'Red soil': 24,
+        'Alluvial soil': 28,
+        'Clay soil': 20
+    },
+    'maize': {
+        'Black soil': 26,
+        'Red soil': 23,
+        'Alluvial soil': 33,
+        'Clay soil': 27
+    },
+    'sugarcane': {
+        'Black soil': 35,
+        'Red soil': 28,
+        'Alluvial soil': 30,
+        'Clay soil': 25
+    },
+    'groundnut': {
+        'Black soil': 25,
+        'Red soil': 20,
+        'Alluvial soil': 30,
+        'Clay soil': 22
+    },
+    'paddy': {
+        'Black soil': 32,
+        'Red soil': 28,
+        'Alluvial soil': 40,
+        'Clay soil': 35
+    },
+    'sunflower': {
+        'Black soil': 20,
+        'Red soil': 18,
+        'Alluvial soil': 25,
+        'Clay soil': 22
+    }
 }
+st.header("🌱 Select Crop")
 
-selected_crop = st.selectbox(
-    "Choose the crop:",
-    crop_options[soil]
+crop_name = st.selectbox(
+    "Choose a crop to get advice and compare yields:",
+    list(crop.keys())
 )
 
 if st.button("Get Farming Advice"):
-    st.subheader("🌾 Crop Recommendations")
-    st.write("**Fertilizer:**", crop[selected_crop]["fertilizer"])
-    st.write("**Pesticides:**", crop[selected_crop]["pesticides"])
-    st.write("**Climate:**", crop[selected_crop]["climate"])
+    # -------------------------
+    # DISPLAY CROP ADVICE
+    # -------------------------
+    st.subheader(f"🌾 Farming Recommendations for {crop_name.capitalize()}")
+    st.write("**Fertilizer:**", crop[crop_name]["fertilizer"])
+    st.write("**Pesticides:**", crop[crop_name]["pesticides"])
+    st.write("**Climate:**", crop[crop_name]["climate"])
+
+    # -------------------------
+    # DISPLAY YIELD GRAPH
+    # -------------------------
+    st.subheader(f"📈 Yield Comparison for {crop_name.capitalize()} across soil types")
+    soil_types = list(yield_data[crop_name].keys())
+    yields = list(yield_data[crop_name].values())
+    df = pd.DataFrame({
+        'Soil Type': soil_types,
+        'Yield (quintals/hectare)': yields
+    })
+    st.bar_chart(df.set_index('Soil Type'))
+    best_soil = max(yield_data[crop_name], key=yield_data[crop_name].get)
+    st.success(f"✅ Best soil for {crop_name.capitalize()} is: {best_soil}")
 
     st.subheader("🌦 Weather Forecast (Next 7 Days)")
     st.write("Day 1–2: Sunny")
@@ -80,4 +134,3 @@ if st.button("Get Farming Advice"):
     st.write("• Water crops in early morning")
     st.write("• Avoid spraying pesticides during rain")
     st.write("• Use organic manure once a month")
-
